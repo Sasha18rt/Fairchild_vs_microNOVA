@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{float}
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -31,8 +32,112 @@ The purpose of this report is to compare two computer architectures, Fairchild 9
 
 The Fairchild 9440 and microNOVA MP/100 were developed during a time when transistor-based computers were becoming more common, marking the transition from low-scale integration (LSI) to larger-scale integration in computing. By analyzing these architectures, we can understand the constraints and innovations of the time.
 
+\section{Elementary Base of Architectures}
+
+\subsection{Fairchild 9440}
+
+\subsubsection{Elementary Base}
+\begin{itemize}
+    \item Utilizes bipolar integrated circuits with Isoplanar Integrated Injection Logic (I$^2$L) technology.
+    \item Based on Low Scale Integration (LSI), focusing on efficient logic and reduced transistor count for compact processing.
+\end{itemize}
+
+\subsubsection{Physical Characteristics}
+\begin{itemize}
+    \item Packaged in a 40-pin DIP (Dual In-line Package).
+    \item Operates with a 5V power supply and consumes approximately 1W of power.
+    \item Supports compact, high-speed operations suitable for minicomputer-class systems.
+\end{itemize}
+
+\subsection{microNOVA MPT/100}
+
+\subsubsection{Elementary Base}
+\begin{itemize}
+    \item Hybrid system using multiple integrated circuits, such as mN602 and mN615 (proprietary Data General chips), along with additional chips like Intel 8048-based processors for peripheral functions.
+    \item DRAMs (4116N) for memory, along with UARTs (2651) for communication.
+    \item Leverages technologies from the era of LSI, with some early use of VLSI for specific functions.
+\end{itemize}
+
+\subsubsection{Physical Characteristics}
+\begin{itemize}
+    \item Desktop computer format with modular components.
+    \item Includes components like a CRT display and floppy disk drives, adding bulk.
+    \item Moderate power consumption, given the mix of ICs and memory units.
+\end{itemize}
+
+Both architectures represent the transition from small-scale to more integrated processing units and reflect technological limitations like reliance on 5V logic, discrete memory units, and modular designs typical of the late 1970s.
+
+\section{Architecture Type Comparison}
+
+\subsection{Fairchild 9440}
+The Fairchild 9440 architecture is accumulator-based. It features four 16-bit accumulators (AC0-AC3), which act as the primary storage for operands in arithmetic and logical operations. These accumulators are general-purpose and play a significant role in data movement and calculations, making it an accumulator-based architecture.
+
+\subsection{microNOVA MP/100}
+The microNOVA MP/100 architecture is also accumulator-based. It relies heavily on accumulators for data processing and operand storage. The specifics of the accumulator implementation are detailed in its technical documentation.
+
+\subsection{Comparison}
+Both systems are accumulator-based, leveraging accumulators as central components for their operations.
+
+\section{Addressing Mechanisms}
+
+
+\subsection{Fairchild 9440}
+The Fairchild 9440 processor uses a two-address architecture, where most instructions specify a source operand and a destination operand. This means the same instruction can perform operations and store the result in a different location or overwrite the source.
+\subsection{microNOVA MP/100}
+microNOVA MP/100: The microNOVA MP/100 is a one-address architecture machine. Most instructions operate with a single explicit memory address operand, using the accumulator implicitly as the source or destination for operations
+
+\subsection{Comparison}
+Thus, the Fairchild 9440 is a two-address machine, while the microNOVA MP/100 operates as a one-address machine.
+
+\section{Registers in Fairchild 9440 and microNOVA MP/100}
+
+The register configurations of the Fairchild 9440 and microNOVA MP/100 architectures differed significantly in terms of type, count, and functionality.
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 featured a \textbf{set of general-purpose registers} that supported its three-address instruction format. These registers were used for data manipulation, arithmetic operations, and temporary storage of intermediate results. The architecture had \textbf{16 general-purpose registers}, each with a width of \textbf{16 bits}. These registers provided a flexible environment for handling operations, minimizing memory access, and optimizing computational performance.
+
+Additionally, the Fairchild 9440 included specialized registers, such as:
+\begin{itemize}
+    \item \textbf{Program Counter (PC):} Used to store the address of the next instruction to be executed.
+    \item \textbf{Status Register:} Contained flags for arithmetic and logic operations, such as carry, zero, overflow, and sign.
+\end{itemize}
+
+The combination of general-purpose and specialized registers enabled efficient handling of both simple and complex instructions.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100, on the other hand, relied heavily on an \textbf{accumulator-based architecture}. The accumulator served as the primary working register for most arithmetic and logical operations. In addition to the accumulator, the architecture included the following specialized registers:
+\begin{itemize}
+    \item \textbf{Instruction Register (IR):} Held the current instruction being executed.
+    \item \textbf{Program Counter (PC):} Tracked the memory address of the next instruction.
+    \item \textbf{Stack Pointer (SP):} Used for managing the call stack during subroutine calls and interrupts.
+\end{itemize}
+
+Unlike the Fairchild 9440, the microNOVA MP/100 had fewer general-purpose registers, which limited its ability to store intermediate values and increased dependency on memory access. The accumulator and specialized registers in the microNOVA MP/100 were \textbf{8 bits wide}, reflecting the simpler and more compact design of this architecture.
+
+\subsection{Comparison}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Feature} & \textbf{Fairchild 9440} & \textbf{microNOVA MP/100} \\ \hline
+General-purpose registers & 16 (16 bits each) & None \\ \hline
+Specialized registers & Program Counter, Status & Program Counter, Stack Pointer, Instruction Register \\ \hline
+Accumulator width & Not used & 8 bits \\ \hline
+\end{tabular}%
+}
+\caption{Comparison of Fairchild 9440 and microNOVA MP/100 Registers}
+\end{table}
+
+
+In conclusion, the Fairchild 9440's extensive set of general-purpose registers offered flexibility and performance advantages, while the microNOVA MP/100 relied on a simpler, accumulator-based design, which was resource-efficient but less versatile for complex computations.
+
 
 \section*{References}
+
 \begin{itemize}
     \item Fairchild 9440 Datasheet. Available at: \url{https://archive.org/details/bitsavers_fairchildmflameDataSheetDec78_2098325/page/n5/mode/2up}
     \item microNOVA MP/100 Technical Documentation. Available at: \url{https://datageneral.uk/restorations/mpt-100-micronova/}
