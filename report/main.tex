@@ -135,6 +135,48 @@ Accumulator width & Not used & 8 bits \\ \hline
 
 In conclusion, the Fairchild 9440's extensive set of general-purpose registers offered flexibility and performance advantages, while the microNOVA MP/100 relied on a simpler, accumulator-based design, which was resource-efficient but less versatile for complex computations.
 
+\section{Flags in Fairchild 9440 and microNOVA MP/100}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 architecture used a \textbf{Status Register} to maintain flags that represented the outcomes of arithmetic and logical operations. These flags were essential for decision-making in program control and flow. The following flags were implemented in the Fairchild 9440:
+\begin{itemize}
+    \item \textbf{Zero Flag (Z):} Set to 1 if the result of an operation is zero.
+    \item \textbf{Carry Flag (C):} Indicates a carry out or borrow into the most significant bit in arithmetic operations.
+    \item \textbf{Overflow Flag (V):} Set to 1 when an arithmetic operation results in an overflow.
+    \item \textbf{Sign Flag (S):} Reflects the sign of the result (1 for negative, 0 for positive).
+\end{itemize}
+
+These flags facilitated conditional branching and error detection in operations, making the architecture robust for complex computations.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 also employed a \textbf{Status Register} for storing flags, although the set of flags was simpler due to its accumulator-based architecture. The following flags were used:
+\begin{itemize}
+    \item \textbf{Zero Flag (Z):} Set when the result of an operation is zero.
+    \item \textbf{Carry Flag (C):} Indicates carry out or borrow into the most significant bit.
+    \item \textbf{Negative Flag (N):} Represents the sign of the result (1 for negative, 0 for positive).
+\end{itemize}
+
+The microNOVA MP/100’s simpler flag set reflects its design for straightforward operations with minimal complexity.
+
+\subsection{Comparison of Flags}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Flag}          & \textbf{Fairchild 9440} & \textbf{microNOVA MP/100} \\ \hline
+Zero (Z)               & Yes                     & Yes                       \\ \hline
+Carry (C)              & Yes                     & Yes                       \\ \hline
+Overflow (V)           & Yes                     & No                        \\ \hline
+Sign/Negative (S/N)    & Yes (Sign)              & Yes (Negative)            \\ \hline
+\end{tabular}
+\caption{Comparison of Flags in Fairchild 9440 and microNOVA MP/100}
+\end{table}
+
+
+While both architectures used flags to manage computation outcomes, the Fairchild 9440 included additional flags like the \textbf{Overflow Flag (V)}, providing enhanced capabilities for complex operations. The microNOVA MP/100 maintained a simpler flag structure, in line with its design for more basic, efficient processing.
 
 \section*{References}
 
