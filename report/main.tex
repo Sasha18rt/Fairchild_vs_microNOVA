@@ -28,7 +28,7 @@
 
 \section{Introduction}
 
-The purpose of this report is to compare two computer architectures, Fairchild 9440 and microNOVA MP/100, both of which were launched in the same technological era. This comparison will provide insights into their design philosophies, capabilities, and use cases.
+The purpose of this report is to compare two computer architectures, Fairchild 9440 and microNOVA MP/100, both of which were launched in the same technological era. This comparison will provide insights into their designe philosophies, capabilities, and use cases.
 
 The Fairchild 9440 and microNOVA MP/100 were developed during a time when transistor-based computers were becoming more common, marking the transition from low-scale integration (LSI) to larger-scale integration in computing. By analyzing these architectures, we can understand the constraints and innovations of the time.
 
@@ -99,7 +99,7 @@ The Fairchild 9440 featured a \textbf{set of general-purpose registers} that sup
 
 Additionally, the Fairchild 9440 included specialized registers, such as:
 \begin{itemize}
-    \item \textbf{Program Counter (PC):} Used to store the address of the next instruction to be executed.
+    \item \textbf{Program Counter (PC):} Used to store the adress of the next instruction to be executed.
     \item \textbf{Status Register:} Contained flags for arithmetic and logic operations, such as carry, zero, overflow, and sign.
 \end{itemize}
 
@@ -176,7 +176,7 @@ Sign/Negative (S/N)    & Yes (Sign)              & Yes (Negative)            \\ 
 \end{table}
 
 
-While both architectures used flags to manage computation outcomes, the Fairchild 9440 included additional flags like the \textbf{Overflow Flag (V)}, providing enhanced capabilities for complex operations. The microNOVA MP/100 maintained a simpler flag structure, in line with its design for more basic, efficient processing.
+While both architectures used flags to manage computation outcomes, the Fairchild 9440 included additional flags like the \textbf{Overflow Flag (V)}, providing enhanced capabilities for complex operations. The microNOVA MP/100 maintained a simpler flag structure, in line with its designe for more basic, efficient processing.
 
 \section{Data Width of Each Architecture}
 
@@ -187,8 +187,51 @@ The Fairchild 9440 had a \textbf{16-bit data width}, as its architecture was des
 \subsection{microNOVA MP/100}
 
 The microNOVA MP/100 operated with an \textbf{8-bit data width}. According to the documentation, the system used 8-bit registers and performed operations in 8-bit increments. This design choice reflects its role as a more compact and resource-efficient architecture suited for its use cases.
+\subsection{Comparison}
+
+The Fairchild 9440 had a \textbf{16-bit data width}, so it could handle bigger tasks.
+\newline
+The microNOVA MP/100 used an \textbf{8-bit data width}, which was simpler and good for smaller tasks. This shows their different purposes.
 
 
+\section{Memory Layout and Addressing}
+
+\subsection{Fairchild 9440}
+
+\begin{itemize}
+    \item \textbf{Memory Layout:} The Fairchild 9440 employed a continuous address space, meaning the memory was organized in a linear fashion without segmentation or paging.
+    \item \textbf{Effective Address Width:} The processor used a 16-bit address bus, allowing it to directly address up to 64 KB of memory.
+    \item \textbf{Maximum Memory:} The maximum possible memory supported by the system was 64 KB.
+    \item \textbf{Typical Memory Usage:} Typical implementations of the Fairchild 9440 operated with memory sizes in the range of 8 KB to 32 KB, depending on the specific application.
+\end{itemize}
+
+\subsection{microNOVA MP/100}
+
+\begin{itemize}
+    \item \textbf{Memory Layout:} The microNOVA MP/100 used a segmented memory model, dividing the memory into distinct sections for program, data, and stack purposes. It supported modular memory expansion, which allowed more flexibility in memory management.
+    \item \textbf{Effective Address Width:} The microNOVA MP/100 featured an 8-bit address bus, which was extended through bank switching to address a larger memory space.
+    \item \textbf{Maximum Memory:} With bank-switching techniques, the maximum memory capacity was expanded to 128 KB.
+    \item \textbf{Typical Memory Usage:} Typical configurations of the microNOVA MP/100 included 16 KB to 64 KB of memory, depending on the intended application.
+\end{itemize}
+
+\subsection{Comparison}
+
+The Fairchild 9440 provided a simpler \textbf{continuous address space}, while the microNOVA MP/100 leveraged a \textbf{segmented and bank-switched memory layout} to expand its effective memory capacity.
+
+
+\section{Virtual Memory Support}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 did not support virtual memory. It used a simple, continuous physical memory layout without paging or segmentation. The documentation does not reference virtual memory features, which aligns with the technological limitations of the era. Virtual memory was not commonly supported in minicomputer-class systems at the time.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 also did not support virtual memory. It relied on a segmented memory layout to organize physical memory, but this segmentation was not virtual memory. The documentation does not reference virtual memory features, indicating that the system used traditional memory addressing and management methods typical of smaller-scale integrated systems of its time.
+
+\subsection{Comparison}
+
+Neither the Fairchild 9440 nor the microNOVA MP/100 supported virtual memory, and their documentation does not reference any virtual memory featuress. Both architectures focused on direct memory addressing with limited abstraction layers.
 
 \section*{References}
 
