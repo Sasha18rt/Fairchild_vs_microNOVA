@@ -233,6 +233,128 @@ The microNOVA MP/100 also did not support virtual memory. It relied on a segment
 
 Neither the Fairchild 9440 nor the microNOVA MP/100 supported virtual memory, and their documentation does not reference any virtual memory featuress. Both architectures focused on direct memory addressing with limited abstraction layers.
 
+
+\section{Instruction Set Architecture (ISA) Analysis}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 featured a versatile instruction set with 48 instructions. It supported various classes, including data transfer, arithmetic, logic, control flow, and input/output. Its two-address format allowed specifying separate source and destination operands. Examples of instructions include:
+\begin{itemize}
+    \item \texttt{ADD R1, R2} - Addition of two registers.
+    \item \texttt{MOV R1, MEM} - Data movement from register to memory.
+    \item \texttt{JMP LABEL} - Unconditional branching.
+\end{itemize}
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 had a compact instruction set of 32 instructions, tailored for its simpler hardware. Using a one-address format, it relied heavily on the accumulator as an implicit operand. Examples of instructions include:
+\begin{itemize}
+    \item \texttt{LDA MEM} - Load memory content into the accumulator.
+    \item \texttt{STA MEM} - Store the accumulator value into memory.
+    \item \texttt{ADD MEM} - Perform addition with the accumulator and memory content.
+\end{itemize}
+
+\subsection{Comparison}
+
+Both architectures supported essential operations like data transfer, arithmetic, and control flow. The Fairchild 9440 provided greater flexibility and complexity with its two-address format and broader instruction set. In contrast, the microNOVA MP/100 focused on simplicity with its smaller instruction set and accumulator-centric design, making it more efficient for basic operations.
+
+
+\section{Addressing Modes Analysis}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 supported the following addressing modes:
+\begin{itemize}
+    \item \textbf{Immediate Addressing:} Operands are provided as part of the instruction.
+    \item \textbf{Direct Addressing:} The instruction specifies the memory address where the operand is located.
+    \item \textbf{Register Addressing:} Operands are stored in registers.
+    \item \textbf{Indirect Addressing:} The memory address of the operand is stored in a register.
+    \item \textbf{Indexed Addressing:} Adds an index value to a base address to calculate the effective memory address.
+\end{itemize}
+
+These modes allowed for flexibility in accessing operands and optimized data manipulation for different use cases.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 supported these addressing modes:
+\begin{itemize}
+    \item \textbf{Immediate Addressing:} Similar to Fairchild 9440, operands are included directly in the instruction.
+    \item \textbf{Direct Addressing:} The instruction specifies the memory address directly.
+    \item \textbf{Accumulator-based Addressing:} Implicitly uses the accumulator as the primary operand source or destination.
+\end{itemize}
+
+The addressing modes in the microNOVA MP/100 were simpler and focused more on the accumulator's role in operations.
+
+\subsection{Comparison}
+
+The Fairchild 9440 supported more modes like Register, Indirect, and Indexed Addressing, making it flexible for complex tasks. It also had Immediate and Direct Addressing, which were standard.
+The microNOVA MP/100 was simpler, with Immediate, Direct, and Accumulator-based Addressing. It was easier to use but less powerful.
+Both systems shared basic modes, but Fairchild 9440’s extra options made it better for varied tasks, while microNOVA MP/100 focused on simplicity.
+
+
+
+\section{I/O Capabilities Comparison}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 used Memory-Mapped I/O and Interrupt Handling to manage devices, making communication with peripherals easier. It supported Parallel I/O and could work with devices like printers and storage systems. This general-purpose I/O design made it flexible for a wide range of tasks.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 also used Memory-Mapped I/O and Interrupt Handling but focused more on desktop use. It included Serial I/O and relied on dedicated chips for specific devices like CRTs and floppy drives. Its I/O capabilities were simpler but specialized for certain setups.
+
+\subsection{Comparison}
+
+Both systems supported Memory-Mapped I/O and Interrupt Handling for device communication.  
+\begin{itemize}
+    \item \textbf{Fairchild 9440:} More general-purpose, with flexibility for various tasks and peripherals like printers and storage devices.
+    \item \textbf{microNOVA MP/100:} Simpler and focused on desktop setups with specific devices like CRTs and floppy drives.
+\end{itemize}
+
+The Fairchild 9440 was designed for flexibility, while the microNOVA MP/100 prioritized simplicity and desktop integration.
+
+\section{Interrupt Support Analysis}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 featured an interrupt-driven mechanism to handle asynchronous events efficiently. Its priority interrupt system allowed higher-priority tasks to preempt lower-priority ones. This design made it suitable for multitasking and real-time applications, where quick responses to external events were critical.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 also supported interrupt-driven operations. It used a basic, single-level interrupt system to signal the processor about peripheral or system events. While simpler than the Fairchild 9440, this approach was effective for desktop applications but less suited for complex multitasking environments.
+
+\subsection{Comparison}
+
+Both the Fairchild 9440 and microNOVA MP/100 supported interrupts for managing external events and I/O.  
+\begin{itemize}
+    \item \textbf{Fairchild 9440:} Offered a priority-based interrupt system, ideal for multitasking and real-time tasks.
+    \item \textbf{microNOVA MP/100:} Used a simpler, single-level interrupt system, sufficient for basic desktop operations.
+\end{itemize}
+
+The Fairchild 9440 had advanced interrupt capabilities, while the microNOVA MP/100 focused on simplicity.
+
+
+\section{Data Types Supported by Each Architecture}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 supported fixed-point integers in two's complement format for signed numbers. It also handled binary and decimal arithmetic but lacked hardware support for floating-point operations, which required software emulation.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 also supported fixed-point integers using two's complement and unsigned integers for arithmetic. Floating-point operations were not natively supported and required software routines. It did not include support for decimal arithmetic or exotic data types.
+
+\subsection{Comparison}
+
+\begin{itemize}
+    \item \textbf{Fixed-point integers:} Both architectures supported two's complement representation for signed numbers.
+    \item \textbf{Floating-point:} Neither had hardware support; operations were emulated in software.
+    \item \textbf{Exotic data types:} Neither system supported complex numbers or other advanced data formats.
+    \item \textbf{Decimal arithmetic:} Fairchild 9440 supported it, while the microNOVA MP/100 did not.
+\end{itemize}
+
+Both systems focused on basic numeric operations, reflecting the technological limits of their time.
+
 \section*{References}
 
 \begin{itemize}
