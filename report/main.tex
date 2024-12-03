@@ -178,6 +178,18 @@ Sign/Negative (S/N)    & Yes (Sign)              & Yes (Negative)            \\ 
 
 While both architectures used flags to manage computation outcomes, the Fairchild 9440 included additional flags like the \textbf{Overflow Flag (V)}, providing enhanced capabilities for complex operations. The microNOVA MP/100 maintained a simpler flag structure, in line with its design for more basic, efficient processing.
 
+\section{Data Width of Each Architecture}
+
+\subsection{Fairchild 9440}
+
+The Fairchild 9440 had a \textbf{16-bit data width}, as its architecture was designed to handle operations and data manipulation in 16-bit words. The registers and memory interactions were structured around this word size, ensuring efficient processing of data in this format.
+
+\subsection{microNOVA MP/100}
+
+The microNOVA MP/100 operated with an \textbf{8-bit data width}. According to the documentation, the system used 8-bit registers and performed operations in 8-bit increments. This design choice reflects its role as a more compact and resource-efficient architecture suited for its use cases.
+
+
+
 \section*{References}
 
 \begin{itemize}
